@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}
+    ورود | {{ block.super }}
+{% endblock title %}
+
+{% block content %}
+{% if message_good %}
+  <div style="margin-left: 816;width: 600;" class="uk-alert-success" uk-alert>
+    <a class="uk-alert-close" uk-close></a>
+    <p style="direction: rtl;margin-right: 10;">{{message_good}}</p>
+  </div>
+{% else %}
+{% endif %}
+{% if message_bad %}
+  <div style="margin-left: 816;width: 600;" class="uk-alert-danger" uk-alert>
+    <a class="uk-alert-close" uk-close></a>
+    <p style="direction: rtl;margin-right: 10;">{{message_bad}}</p>
+  </div>
+{% else %}
+{% endif %}
+  <form method="POST" style="margin-top: 50;width: 1000;margin-left: 460;direction: rtl;">
+    {% csrf_token %}
+    <fieldset class="uk-fieldset">
+        <p>برای ورود به حساب کاربری خود لطفا فرم زیر را پرکنید</p>
+        <legend class="uk-legend">وارد شوید!</legend>
+        <div class="uk-margin">
+            <input style="height: 60;" class="uk-input" name="username" type="text" placeholder="نام‌کاربری" required>
+        </div>
+        <div class="uk-margin">
+            <input style="height: 60;" class="uk-input" name="password" type="password" placeholder="کلمه عبور" required>
+        </div>
+        <script src='https://www.google.com/recaptcha/api.js'></script>
+        <div class="g-recaptcha" data-sitekey="6Lf31UMUAAAAAFU-fzaMDXyKisAfxJb9wNoBb3gf"></div>
+        <br>
+        <button style="height: 60;" class="uk-button uk-button-default">ورود</button>
+    </fieldset>
+  </form>
+{% endblock %}

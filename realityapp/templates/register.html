@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}
+    ثبت نام | {{ block.super }}
+{% endblock title %}
+
+{% block content %}
+{% if message_good %}
+  <div style="margin-left: 816;width: 600;" class="uk-alert-success" uk-alert>
+    <a class="uk-alert-close" uk-close></a>
+    <p style="direction: rtl;margin-right: 10;">{{message_good}}</p>
+  </div>
+{% else %}
+{% endif %}
+{% if message_bad %}
+  <div style="margin-left: 816;width: 600;" class="uk-alert-danger" uk-alert>
+    <a class="uk-alert-close" uk-close></a>
+    <p style="direction: rtl;margin-right: 10;">{{message_bad}}</p>
+  </div>
+{% else %}
+{% endif %}
+  <form method="POST" style="margin-top: 50;width: 1000;margin-left: 460;direction: rtl;">
+    {% csrf_token %}
+    <fieldset class="uk-fieldset">
+        <p>برای استفاده بهتر از وبسایت لطفا ثبت نام کنید</p>
+        <legend class="uk-legend">ثبت نام کنید!</legend>
+        <div class="uk-margin">
+            <input style="height: 60;" class="uk-input" name="email" type="email" placeholder="پست الکترونیک" required>
+        </div>
+        <div class="uk-margin">
+            <input style="height: 60;" class="uk-input" name="username" type="text" placeholder="نام‌کاربری" required>
+        </div>
+        <div class="uk-margin">
+            <input style="height: 60;" class="uk-input" name="password" type="password" placeholder="کلمه عبور" required>
+        </div>
+        <div class="uk-margin">
+            <input style="height: 60;" class="uk-input" name="password1" type="password" placeholder="تکرار کلمه عبور" required>
+        </div>
+        <script src='https://www.google.com/recaptcha/api.js'></script>
+        <div class="g-recaptcha" data-sitekey="6Lf31UMUAAAAAFU-fzaMDXyKisAfxJb9wNoBb3gf"></div>
+        <br>
+        <button style="height: 60;" class="uk-button uk-button-default">ثبت‌نام!</button>
+    </fieldset>
+  </form>
+{% endblock %}
